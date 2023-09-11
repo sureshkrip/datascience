@@ -1,0 +1,24 @@
+{
+  "StartAt": "SplitAndSlice",
+  "States": {
+    "SplitAndSlice": {
+      "Type": "Pass",
+      "Result": {
+        "input1_parts": { "Fn::Split": ["/", "States.Input.data1"] },
+        "input2_parts": { "Fn::Split": ["/", "States.Input.data2"] }
+      },
+      "ResultPath": "$.sliced_data",
+      "Next": "CombineParts"
+    },
+    "CombineParts": {
+      "Type": "Pass",
+      "Result": {
+        "combined_data": {
+          "Fn::Sub": "${sliced_data.input2_parts[0]}${sliced_data.input1_parts[1]}"
+        }
+      },
+      "ResultPath": "$.combined_data",
+      "End": true
+    }
+  }
+}
