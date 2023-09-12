@@ -22,3 +22,35 @@
     }
   }
 }
+
+
+{
+  "StartAt": "ExtractSubstring",
+  "States": {
+    "ExtractSubstring": {
+      "Type": "Pass",
+      "Result": {
+        "input1": "test/c020_type",
+        "input2": "data_c"
+      },
+      "ResultPath": "$.inputs",
+      "Next": "ExtractedSubstring"
+    },
+    "ExtractedSubstring": {
+      "Type": "Pass",
+      "Result": {
+        "substring1": {
+          "Fn::Select": [1, { "Fn::Split": ["/", { "Fn::GetAtt": ["ExtractSubstring", "ResultPath"] }] }]
+        },
+        "substring2": {
+          "Fn::Sub": "${$.inputs.input2.substring(0, 4)}"
+        },
+        "output": {
+          "Fn::Sub": "${substring2}${substring1}"
+        }
+      },
+      "ResultPath": "$.output",
+      "End": true
+    }
+  }
+}
