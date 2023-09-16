@@ -1,0 +1,159 @@
+Decorators
+
+A decorator in python is a design pattern that allows you to add functionality to an existing object without modifying its structure. 
+
+Advantages
+Reusability Ability to reuse across multiple functions and methods
+Modularity  It modularizes the code by allowing users to separate common concept between function and methods
+Flexibility Flexiable way to modify the behaviour of functions and methods temporarily 
+
+
+Disadvantages
+Complexity  It adds additional complexity to the programd and harder to read
+Debugging   Difficult to trace down the errors because trackeback might point to decarotors instead of original functions.
+Multiple decorators It can lead to confusion about the order in which they are applied to the functions behaviour.
+
+Hello World example
+
+def my_decorator(func):
+    def wrapper():
+        print("Something is happening before the function is called.")
+        func()
+        print("Something is happening after the function is called.")
+    return wrapper
+
+@my_decorator
+def say_hello_python():
+    print("Hello Python!")
+
+@my_decorator
+def say_hello_decorator():
+    print("Hello Python Decorator!")
+
+say_hello_python()
+say_hello_decorator()
+
+Output
+Something is happening before the function is called.
+Hello Python!
+Something is happening after the function is called.
+Something is happening before the function is called.
+Hello Python Decorator!
+Something is happening after the function is called.
+
+In the above example, it emphasizes the reusability and modularity of decorators
+
+
+Let's get into a complex example where two methods with different signatures, one accepts variables as positional arguments and anonther method accetps 
+variables as mixed arguments (positional & keyword arguments)
+
+
+import time
+import functools
+
+def debug_and_time(func):
+    @functools.wraps(func)  
+    def wrapper(*args, **kwargs):
+        start_time = time.perf_counter()
+        
+        # Call the function and store its result.
+        result = func(*args, **kwargs)
+        
+        end_time = time.perf_counter()
+        elapsed_time = end_time - start_time
+        
+        # Print function details.
+        arg_values = ', '.join(map(str, args)) + ', '.join(f'{key}={value}' for key, value in kwargs.items())
+        print(f"[DEBUG] Called function: {func.__name__}({arg_values}) -> {result}")
+        print(f"[TIME] Function {func.__name__} took {elapsed_time:.6f} seconds to complete.")
+        
+        return result
+    return wrapper
+
+@debug_and_time
+def add(a, b):
+    """This function adds two numbers."""
+    return a + b
+
+@debug_and_time
+def say_hello(name, age=None):
+    """This function greets a person."""
+    if age:
+        return f"Hello, {name}. You're {age} years old!"
+    return f"Hello, {name}!"
+
+print(add(5, 3))
+print(say_hello("Alice", age=30))
+
+
+Output
+
+[DEBUG] Called function: add(5, 3) -> 8
+[TIME] Function add took 0.000001 seconds to complete.
+8
+[DEBUG] Called function: say_hello(Aliceage=30) -> Hello, Alice. You're 30 years old!
+[TIME] Function say_hello took 0.000009 seconds to complete.
+Hello, Alice. You're 30 years old!
+
+Bonus material
+
+@functools.wraps(func)  # This is another decorator to ensure that our decorated function retains its original name and docstring.
+
+if you print docstring of above add function without functools in the decorator  
+
+print (add.__name__)  # __ methods are magic methods 
+print (add.__doc__)
+
+then it will display  
+
+Output:
+wrapper
+None
+
+
+otherwise it will print the doc string of the actual method. 
+
+Output:
+add
+This function adds two numbers.
+
+Positional Arguments (* Args)
+
+The variables are passed to the function the order in which they are defined.
+
+def function_name(arg1, arg2):
+    # body of the function
+
+function_name(value1, value2)
+
+
+Allow you to pass a variable of poistional arguments. Inside the function it is is treated as tuple.
+
+def function_name(*args):
+    for arg in args:
+        print(arg)
+
+function_name(value1, value2, value3, ...)
+
+
+
+
+**Kwargs
+
+The variables are passed to the function based on the keyword. It makes the order of the passing arguments flexible.
+
+def function_name(arg1, arg2):
+    # body of the function
+
+function_name(arg2=value2, arg1=value1)
+
+
+Allow you to pass a variable of keyword arguments. Inside the function it is treated as dictionary.
+
+def function_name(**kwargs):
+    for key, value in kwargs.items():
+        print(key, value)
+
+function_name(arg1=value1, arg2=value2, ...)
+
+
