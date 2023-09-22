@@ -54,3 +54,37 @@
     }
   }
 }
+{
+  "Comment": "Example Step Function",
+  "StartAt": "SageMakerProcessingJob",
+  "States": {
+    "SageMakerProcessingJob": {
+      "Type": "AWS::SageMaker::ProcessingJob",
+      "Resource": "arn:aws:sagemaker:us-east-1:123456789012:processing-job/my-processing-job",
+      "End": true
+    },
+    "CheckJobStatus": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.Status",
+          "StringEquals": "Completed",
+          "Next": "SuccessState"
+        },
+        {
+          "Variable": "$.Status",
+          "StringEquals": "Failed",
+          "Next": "FailureState"
+        }
+      ],
+      "Default": "FailureState"
+    },
+    "SuccessState": {
+      "Type": "Succeed"
+    },
+    "FailureState": {
+      "Type": "Fail",
+      "Cause": "SageMaker Processing Job Failed"
+    }
+  }
+}
