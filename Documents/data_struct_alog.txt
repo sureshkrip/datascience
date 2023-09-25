@@ -64,6 +64,19 @@ Of course! Here are eight more trivia questions related to binary trees, each wi
 
     **Answer: B) Min**
 
+
+Certainly! Here's a trivia question related to finding the sum path in a binary tree:
+
+**Question**: In a binary tree, what is the term for a path from the root to a leaf node where the sum of the values of all nodes on the path equals a specific target sum?
+
+A) Root Path\
+B) Leaf Path\
+C) Sum Path\
+D) Branch Path
+
+**Answer**: C) Sum Path
+
+This question tests knowledge about the concept of a "sum path" in a binary tree, where the sum of node values along the path from the root to a leaf matches a given target sum.
 Feel free to use these additional questions for your quizzes or trivia games related to binary trees!
 
 Certainly! Here are 10 trivia questions related to bubble sort, insertion sort, shell sort, merge sort, and quick sort algorithms, each with four answer choices:
