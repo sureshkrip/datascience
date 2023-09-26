@@ -164,3 +164,50 @@ Answers:
 10. A) O(n log n)
 
 These questions cover various aspects of these sorting algorithms and can be used for quizzes or as a learning resource.
+
+
+| Tree Traversal Method       | Description                                                      | Usage
+|-----------------------------|------------------------------------------------------------------|
+| Preorder (DFS)               | Root node -> Left subtree -> Right subtree                      | Tree and graph traversal, topological sorting
+| Inorder                     | Left subtree -> Root node -> Right subtree                       | retrieving elements in sorted order
+| Postorder                   | Left subtree -> Right subtree -> Root node                       | Evaluating arithmetic expressions
+| Breadth First Search (BFS)  | Explore nodes level by level, starting from root                 | Shortest path finding
+
+
+Certainly! Here's a table with more examples for each traversal type:
+
+| Traversal Type           | Usage                                                  | Example                                          |
+|--------------------------|--------------------------------------------------------|--------------------------------------------------|
+| Breadth-First Search (BFS) | Shortest path finding, web crawling, network routing | Finding the shortest path in a social network graph, crawling web pages to index content |
+| Depth-First Search (DFS) - Preorder | Tree and graph traversal, topological sorting      | Building a decision tree in machine learning, traversing a family tree |
+| Depth-First Search (DFS) - Inorder | Binary search trees (BST), retrieving elements in sorted order | In-order traversal of a binary search tree to validate its structure |
+| Depth-First Search (DFS) - Postorder | Tree and graph traversal, expression tree evaluation | Evaluating a postfix notation arithmetic expression, deleting nodes in a tree |
+
+These additional examples showcase the versatility of BFS and DFS across various domains and applications. Each traversal type can be adapted to suit different problems and data structures.
+
+
+Certainly! Here's the comparison table with Selection Sort in the first row:
+
+| Sorting Algorithm | Average Time Complexity | Worst-Case Time Complexity | Best-Case Time Complexity | Space Complexity | Description                                                |
+|-------------------|-------------------------|-----------------------------|---------------------------|------------------|------------------------------------------------------------|
+| Selection Sort    | O(n^2)                  | O(n^2)                      | O(n^2)                    | O(1)             | Repeatedly selects the minimum element and swaps it with the current position. |
+| Bubble Sort       | O(n^2)                  | O(n^2)                      | O(n)                      | O(1)             | Repeatedly swaps adjacent elements if they are in the wrong order. |
+| Insertion Sort    | O(n^2)                  | O(n^2)                      | O(n)                      | O(1)             | Elements are inserted into their correct positions one at a time.   |
+| Shell Sort        | O(n^1.25) or better     | Depends on gap sequence    | O(n) or better            | O(1)             | Sorts elements in small groups with varying intervals.                |
+| Merge Sort        | O(n log n)              | O(n log n)                  | O(n log n)                | O(n)             | Uses a divide-and-conquer strategy to sort and merge subarrays.        |
+| Quick Sort        | O(n log n)              | O(n^2)                      | O(n log n)                | O(log n)         | Uses a pivot element to partition and recursively sort subarrays.     |
+
+Selection Sort is now listed as the first sorting algorithm in the table, and the other sorting algorithms follow. This arrangement allows for easy comparison between the algorithms.
+
+
+Certainly! Here's a table summarizing the concepts related to graphs, including adjacency matrix, adjacency list, adjacency set, and topological sorting:
+
+| Concept                   | Description                                                                                     | Use Cases and Examples                                           |
+|---------------------------|-------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| **Graph**                 | A collection of vertices (nodes) and edges (connections) that represent relationships between them. | Social networks, road networks, computer networks.               |
+| **Adjacency Matrix**      | A 2D array where matrix[i][j] represents the existence (or weight) of an edge between vertices i and j. | Representing relationships in dense graphs, weighted graphs.    |
+| **Adjacency List**        | Each vertex maintains a list (array, linked list) of its neighboring vertices.                | Memory-efficient representation for sparse graphs, supports weighted graphs. |
+| **Adjacency Set**         | Each vertex maintains a set (or hash set) of its neighboring vertices.                          | Quick edge existence checks, supports weighted graphs, and set operations. |
+| **Topological Sorting**   | An ordering of vertices in a directed acyclic graph (DAG) such that for every directed edge (u, v), vertex u comes before vertex v in the ordering. | Scheduling tasks with dependencies, determining program build order. |
+
+This table provides an overview of these fundamental concepts in graph theory and their respective use cases. Each concept serves a specific purpose in representing and analyzing graphs.
